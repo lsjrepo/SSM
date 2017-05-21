@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.EmployeeMapper">
+	<!--开启二级缓存
+	缓存刷新间隔,默认不清空,设置一个毫秒值
+	是否只读
+	true表示只读
+	false:非只读,操作获取的数据可能会被修改
+	-->
+	<!--<cache eviction="FIFO" flushInterval="6000" readOnly="false" size="1024"></cache>-->
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache"></cache>
+	<!--public Employee getEmpByMap(Map<String,Object> map);-->
+	<!--查询操作-->
+	<select id="getEmpById" resultType="com.test.beans.Employee"
+	useCache="true">
+		SELECT id,last_name lastName,email,gender from tb1_emplyee where id = #{id}
+	</select>
+
+	<select id="getEmps" resultType="com.test.beans.Employee">
+		select * from tb1_emplyee
+	</select>
+
+</mapper>
