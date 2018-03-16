@@ -1,79 +1,89 @@
 package com.test.model;
 
-import java.io.Serializable;
+import java.util.Date;
 
 
 /**
  * Created by lsj on 17-5-12.
  */
-public class Employee implements Serializable{
+public class Employee {
+    private String eId;
 
-    private static final long serialVersionUID = -1801830429862889271L;
-    private Integer id;
-    private String lastName;
-    private String email;
-    private String gender;
-    private Department dept;
+    private String eName;
 
-    public Employee() {
-        super();
-    }
+    private String eSex;
 
-    public Employee(Integer id, String lastName, String email, String gender) {
-        super();
-        this.id = id;
-        this.lastName = lastName;
-        this.email = email;
-        this.gender = gender;
-    }
+    private String ePhone;
 
+    private String eAddress;
 
-    public Employee(Integer id, String lastName, String email, String gender, Department dept) {
-        this.id = id;
-        this.lastName = lastName;
-        this.email = email;
-        this.gender = gender;
-        this.dept = dept;
+    private Date eDate;
+
+    private Float ePrice;
+
+    private String eBz;
+
+    public String geteId() {
+        return eId;
     }
 
-    public Department getDept() {
-        return dept;
+    public void seteId(String eId) {
+        this.eId = eId == null ? null : eId.trim();
     }
 
-    public void setDept(Department dept) {
-        this.dept = dept;
+    public String geteName() {
+        return eName;
     }
 
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getGender() {
-        return gender;
-    }
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-    @Override
-    public String toString() {
-        return "Employee [id=" + id + ", lastName=" + lastName + ", email="
-                + email + ", gender=" + gender + "]";
+    public void seteName(String eName) {
+        this.eName = eName == null ? null : eName.trim();
     }
 
+    public String geteSex() {
+        return eSex;
+    }
 
+    public void seteSex(String eSex) {
+        this.eSex = eSex == null ? null : eSex.trim();
+    }
 
+    public String getePhone() {
+        return ePhone;
+    }
+
+    public void setePhone(String ePhone) {
+        this.ePhone = ePhone == null ? null : ePhone.trim();
+    }
+
+    public String geteAddress() {
+        return eAddress;
+    }
+
+    public void seteAddress(String eAddress) {
+        this.eAddress = eAddress == null ? null : eAddress.trim();
+    }
+
+    public Date geteDate() {
+        return eDate;
+    }
+
+    public void seteDate(Date eDate) {
+        this.eDate = eDate;
+    }
+
+    public Float getePrice() {
+        return ePrice;
+    }
+
+    public void setePrice(Float ePrice) {
+        this.ePrice = ePrice;
+    }
+
+    public String geteBz() {
+        return eBz;
+    }
+
+    public void seteBz(String eBz) {
+        this.eBz = eBz == null ? null : eBz.trim();
+    }
 }

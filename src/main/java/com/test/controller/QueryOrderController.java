@@ -1,0 +1,60 @@
+package com.test.controller;
+
+
+import com.test.service.OrderProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class QueryOrderController implements Controller {
+	@Autowired
+	private OrderProductService orderProductService;
+	/**
+	 * 查询订单列表
+	 */
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request,
+                                      HttpServletResponse response) throws Exception {
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		try {
+			String starttime = request.getParameter("starttime");
+			String endtime = request.getParameter("endtime");
+			Date start = starttime.isEmpty() ? null : Date.valueOf(starttime);
+			Date end = endtime.isEmpty() ? null : Date.valueOf(endtime);
+			String orderId = request.getParameter("orderid");
+			String state = request.getParameter("orderstate");
+			int style = Integer.parseInt(state);
+			List<Object> list = orderProductService.queryOrder(start, end, style, orderId);
+			int pagecurrent = 0, pagecount = (list.size()-1) / 10 + 1;
+			String page = request.getParameter("page");
+			if (page!=null) {
+				pagecurrent = Integer.parseInt(page);
+			}
+			
+			list = list.subList(pagecurrent * 10, (pagecurrent*10 + 10) > list.size() ? list.size() : (pagecurrent*10 + 10));
+			
+			model.put("result", list);
+			
+			model.put("starttime", starttime);
+			model.put("endtime", endtime);
+			model.put("orderId", orderId);
+			model.put("orderstate", state);
+			model.put("pagecurrent", pagecurrent);
+			model.put("pagecount", pagecount);
+			return new ModelAndView("order_record_query", model);
+		} catch (Exception e) {
+			model.put("error", "操作失败");
+			e.printStackTrace();
+			return new ModelAndView("error", model);
+		}
+	}
+
+}
