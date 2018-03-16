@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 		User user = userMapper.selectByPrimaryKey(account);
 		return user;
 	}
-
+	@Transactional
 	@Override
 	public int updateByPrimaryKey(String uid, String password, String newpassword) throws Exception{
 		int ret = 0;
