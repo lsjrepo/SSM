@@ -6,6 +6,7 @@ import com.test.model.Customer;
 import com.test.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,19 +28,19 @@ public class CustomerServiceImpl implements CustomerService {
 		Customer customer = customerMapper.selectByPrimaryKey(id);
 		return customer;
 	}
-
+	@Transactional
 	@Override
 	public int modifyCustomer(Customer customer) throws Exception {
 		customerMapper.updateByPrimaryKey(customer);
 		return 1;
 	}
-
+	@Transactional
 	@Override
 	public int deleteCustomer(int id) throws Exception {
 		customerMapper.deleteByPrimaryKey(id);
 		return 1;
 	}
-
+	@Transactional
 	@Override
 	public int addCustomer(Customer customer) throws Exception {
 		customerMapper.insert(customer);

@@ -8,6 +8,7 @@ import com.test.model.ProductType;
 import com.test.service.ProductMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -18,6 +19,7 @@ public class ProductMServiceImpl implements ProductMService {
 	private ProductTypeMapper productTypeMapper;
 	@Autowired
 	private ProductMapper productMapper;
+	@Transactional
 	@Override
 	public int addType(ProductType productType) throws Exception{
 		productTypeMapper.insertSelective(productType);
@@ -37,7 +39,7 @@ public class ProductMServiceImpl implements ProductMService {
 		ptlist = productTypeMapper.selectAllTypes();
 		return ptlist;
 	}
-
+	@Transactional
 	@Override
 	public int removeType(int id) throws Exception {
 		productTypeMapper.deleteByPrimaryKey(id);
@@ -67,13 +69,13 @@ public class ProductMServiceImpl implements ProductMService {
 		    }
 		return olist;
 	}
-
+	@Transactional
 	@Override
 	public int removeProduct(int pid) throws Exception {
 		productMapper.deleteByPrimaryKey(pid);
 		return 1;
 	}
-
+	@Transactional
 	@Override
 	public int addProduct(Product product) throws Exception {
 		productMapper.insertSelective(product);
@@ -85,7 +87,7 @@ public class ProductMServiceImpl implements ProductMService {
 		Product product = productMapper.selectByPrimaryKey(id);
 		return product;
 	}
-
+	@Transactional
 	@Override
 	public int updateProduct(Product product) throws Exception {
 		productMapper.updateByPrimaryKey(product);
