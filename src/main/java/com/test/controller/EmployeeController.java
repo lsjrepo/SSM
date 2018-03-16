@@ -3,7 +3,7 @@ package com.test.controller;
 import java.util.List;
 import java.util.Map;
 
-import com.test.beans.Employee;
+import com.test.model.Employee;
 import com.test.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

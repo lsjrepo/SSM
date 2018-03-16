@@ -1,6 +1,4 @@
-package com.test.beans;
-
-import org.apache.ibatis.type.Alias;
+package com.test.model;
 
 import java.io.Serializable;
 

@@ -13,12 +13,12 @@
 	<cache type="org.mybatis.caches.ehcache.EhcacheCache"></cache>
 	<!--public Employee getEmpByMap(Map<String,Object> map);-->
 	<!--查询操作-->
-	<select id="getEmpById" resultType="com.test.beans.Employee"
+	<select id="getEmpById" resultType="com.test.model.Employee"
 	useCache="true">
 		SELECT id,last_name lastName,email,gender from tb1_emplyee where id = #{id}
 	</select>
 
-	<select id="getEmps" resultType="com.test.beans.Employee">
+	<select id="getEmps" resultType="com.test.model.Employee">
 		select * from tb1_emplyee
 	</select>
 
